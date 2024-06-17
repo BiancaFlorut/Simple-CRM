@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SimpleCRM": {
+    "simple-crm": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "SimpleCRM:build:production"
+              "buildTarget": "simple-crm:build:production"
             },
             "development": {
-              "buildTarget": "SimpleCRM:build:development"
+              "buildTarget": "simple-crm:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "SimpleCRM:build"
+            "buildTarget": "simple-crm:build"
           }
         },
         "test": {
