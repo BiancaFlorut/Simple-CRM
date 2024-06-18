@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from '../models/user.class';
+import { DocumentData, Firestore, collection, doc, onSnapshot } from '@angular/fire/firestore';
 
 
 @Component({
@@ -16,20 +17,19 @@ import { User } from '../models/user.class';
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
-  data : User[] = [
-    new User({
-      firstName: 'Julian',
-      lastName: 'Kowalski',
-      birthDate: new Date('1980-01-01').getTime(),
-      city: 'Wrocław',
-      street: 'Flowestowa',
-      zipCode: '12345'
-    })
-  ];
+  data:DocumentData[] = [];
   displayedColumns: string[] = [ 'name', 'birthDate', 'city'];
   dataSource = this.data;
   readonly dialog = inject(MatDialog);
   user = new User();
+  firestore: Firestore = inject(Firestore);
+  unsubData: any;
+
+  constructor() {
+    this.unsubData = onSnapshot(collection(this.firestore, 'users'), (doc) => {
+      this.dataSource = doc.docs.map((doc) => doc.data());
+  });
+  }
 
   openDialog() {
     this.dialog.open(DialogAddUserComponent);
@@ -37,5 +37,11 @@ export class UserComponent {
 
   getLocalDate(timeStamp: number) {
     return new Date(timeStamp).toLocaleDateString();
+  }
+
+  ngOnDestroy() {
+    if (this.unsubData) {
+      this.unsubData();
+    }
   }
 }
