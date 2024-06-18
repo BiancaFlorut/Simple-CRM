@@ -5,12 +5,11 @@ import { MatDialogActions, MatDialogClose, MatDialogRef, MatDialogTitle } from '
 import { MatDialogContent } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { User } from '../models/user.class';
-import { Firestore, collectionData, collection, addDoc } from '@angular/fire/firestore';
-import { doc, setDoc } from "firebase/firestore";
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -23,7 +22,9 @@ import { doc, setDoc } from "firebase/firestore";
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatDatepickerModule],
+    MatDatepickerModule,
+    MatProgressBarModule
+  ],
   templateUrl: './dialog-add-user.component.html',
   styleUrl: './dialog-add-user.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,6 +35,7 @@ export class DialogAddUserComponent {
   user = new User();
   birthDate!: Date;
   firestore: Firestore = inject(Firestore);
+  loading = false;
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -41,9 +43,10 @@ export class DialogAddUserComponent {
 
   async saveUser(): Promise<void> {
     this.user.birthDate = this.birthDate.getTime();
-    console.log(this.user);
+    this.loading = true;
     await addDoc(collection(this.firestore, 'users'), this.user.toJSON()).then((res) => {
       console.log("Document successfully written!", res);
+      this.loading = false;
     });
 
     this.dialogRef.close(this.user);
