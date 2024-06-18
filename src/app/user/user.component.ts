@@ -17,14 +17,25 @@ import { User } from '../models/user.class';
 })
 export class UserComponent {
   data : User[] = [
-    
+    new User({
+      firstName: 'Julian',
+      lastName: 'Kowalski',
+      birthDate: new Date('1980-01-01').getTime(),
+      city: 'Wrocław',
+      street: 'Flowestowa',
+      zipCode: '12345'
+    })
   ];
-  displayedColumns: string[] = ['position', 'name', 'birthDate', 'city'];
+  displayedColumns: string[] = [ 'name', 'birthDate', 'city'];
   dataSource = this.data;
   readonly dialog = inject(MatDialog);
   user = new User();
 
   openDialog() {
     this.dialog.open(DialogAddUserComponent);
+  }
+
+  getLocalDate(timeStamp: number) {
+    return new Date(timeStamp).toLocaleDateString();
   }
 }

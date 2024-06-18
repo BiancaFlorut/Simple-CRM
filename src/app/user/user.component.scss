@@ -3,3 +3,13 @@
   bottom: 56px;
   right: 56px;
 }
+
+// table {
+
+  .table-row {
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+    }
+// }
