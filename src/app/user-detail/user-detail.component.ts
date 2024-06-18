@@ -26,6 +26,7 @@ export class UserDetailComponent {
   dialog = inject(MatDialog);
 
   id = this.route.snapshot.params['id'];
+  
 
   constructor() { 
     this.getUser();
@@ -45,13 +46,17 @@ export class UserDetailComponent {
   }
 
   openAddressDialog() {
+    let newUser = new User(this.user.toJSON());
+    newUser.customIdName = this.id;
     this.dialog.open(DialogEditAddressComponent, {
-      data: this.user
+      data: newUser
     });
   }
   openContactInfoDialog() {
+    let newUser = new User(this.user.toJSON());
+    newUser.customIdName = this.id;
     this.dialog.open(DialogEditContactInfoComponent, {
-      data: this.user
+      data: newUser
     })
     }
 }

@@ -1,4 +1,5 @@
 export class User {
+  customIdName!: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -14,6 +15,7 @@ export class User {
     this.street = obj ? obj.street : '';
     this.zipCode = obj ? obj.zipCode : '';
     this.city = obj ? obj.city : '';
+    this.customIdName = obj ? obj.customIdName : '';
   }
 
   toJSON() {

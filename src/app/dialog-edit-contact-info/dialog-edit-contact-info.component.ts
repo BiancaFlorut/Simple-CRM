@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { User } from '../models/user.class';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, doc, updateDoc } from '@angular/fire/firestore';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { provideNativeDateAdapter } from '@angular/material/core';
 
@@ -47,10 +47,11 @@ export class DialogEditContactInfoComponent {
   async saveUser(): Promise<void> {
     this.user.birthDate = this.birthDate.getTime();
     this.loading = true;
-    await addDoc(collection(this.firestore, 'users'), this.user.toJSON()).then((res) => {
-      console.log("Document successfully written!", res);
-      this.loading = false;
-    });
+    const docRef = doc(collection(this.firestore, 'users'), this.user.customIdName);
+      await updateDoc(docRef, this.user.toJSON()).then((res) => {
+        console.log("Document successfully updated!", res);
+        this.loading = false;
+      });
 
     this.dialogRef.close(this.user);
   }
