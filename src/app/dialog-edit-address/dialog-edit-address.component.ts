@@ -25,7 +25,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
     MatDatepickerModule,
     MatProgressBarModule],
   templateUrl: './dialog-edit-address.component.html',
-  styleUrl: './dialog-edit-address.component.scss'
+  styleUrl: './dialog-edit-address.component.scss',
 })
 export class DialogEditAddressComponent {
   readonly dialogRef = inject(MatDialogRef<DialogEditAddressComponent>);
@@ -36,7 +36,6 @@ export class DialogEditAddressComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: User) {
     this.user = data;
-    console.log(this.user);
 
   }
 
@@ -53,6 +52,6 @@ export class DialogEditAddressComponent {
         this.loading = false;
       });
     }
-    this.dialogRef.close(this.data);
+    this.dialogRef.close();
   }
 }

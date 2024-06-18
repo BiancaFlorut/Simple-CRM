@@ -53,6 +53,6 @@ export class DialogEditContactInfoComponent {
         this.loading = false;
       });
 
-    this.dialogRef.close(this.user);
+    this.dialogRef.close();
   }
 }

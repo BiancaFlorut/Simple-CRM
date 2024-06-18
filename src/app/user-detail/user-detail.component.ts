@@ -15,7 +15,7 @@ import { DialogEditContactInfoComponent } from '../dialog-edit-contact-info/dial
   standalone: true,
   imports: [MatCardModule, MatIconModule, MatButtonModule, MatMenuModule],
   templateUrl: './user-detail.component.html',
-  styleUrl: './user-detail.component.scss'
+  styleUrl: './user-detail.component.scss',
 })
 export class UserDetailComponent {
 
@@ -32,11 +32,15 @@ export class UserDetailComponent {
     this.getUser();
   }
 
+  ngOnInit(): void {}
+
   getUser() {
-    const docRef = doc(collection(this.firestore,'users'), this.id);
+    if (this.id) {
+      const docRef = doc(collection(this.firestore,'users'), this.id);
     this.unsub = onSnapshot(docRef, (doc) => {
       this.user = new User(doc.data());
     });
+    }
   }
 
   onNGDestroy() {

@@ -38,6 +38,8 @@ export class UserComponent {
   });
   }
 
+  ngOnInit(): void {}	
+
   openDialog() {
     const dialog = this.dialog.open(DialogAddUserComponent);
   }
