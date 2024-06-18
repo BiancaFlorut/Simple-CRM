@@ -39,9 +39,7 @@ export class UserComponent {
   }
 
   openDialog() {
-    console.log(this.user);
-    
-    const dialog = this.dialog.open(DialogAddUserComponent, {data: this.user});
+    const dialog = this.dialog.open(DialogAddUserComponent);
   }
 
   getLocalDate(timeStamp: number) {
