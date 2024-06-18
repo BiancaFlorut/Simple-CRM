@@ -26,3 +26,14 @@
     margin: 0;
   }
 }
+
+.menu-btn-container {
+  position: relative;
+  width: 100%;
+}
+
+.menu-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}

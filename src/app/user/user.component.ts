@@ -34,9 +34,7 @@ export class UserComponent {
         this.newData = entry.data();
         this.newData['customIdName'] = entry.id;
         this.dataSource.push(this.newData)      
-      })
-      console.log(this.dataSource);
-      
+      });
   });
   }
 

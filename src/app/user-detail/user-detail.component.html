@@ -1,14 +1,37 @@
 <mat-card appearance="raised">
+  <div class="menu-btn-container">
+    <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="menuContactInfo">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menuContactInfo="matMenu">
+      <button mat-menu-item (click)="openContactInfoDialog()">
+        <mat-icon>edit</mat-icon>
+        <span>Edit Contact Info</span>
+      </button>
+    </mat-menu>
+  </div>
   <mat-card-header class="user-header-card">
     <img class="user-image" src="./assets/imgs/user.png" alt="user image">
     <div class="user-info">
-      <h2>Max Musterman</h2>
-      <p>max.musterman&#64;mail.de</p>
+      <h2>{{user.firstName}} {{user.lastName}}</h2>
+      <p>{{user.email}}</p>
     </div>
   </mat-card-header>
+  <div class="menu-btn-container">
+    <button class="menu-btn" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openAddressDialog()">
+        <mat-icon>edit</mat-icon>
+        <span>Edit address</span>
+      </button>
+    </mat-menu>
+  </div>
   <mat-card-content class="mt-16">
+    
     <mat-card-title> Address</mat-card-title>
-    <span>Street and number</span> <br>
-    <span>12345 Musterstadt</span>
+    <span>{{user.street}}</span> <br>
+    <span>{{user.zipCode}} {{user.city}}</span>
   </mat-card-content>
 </mat-card>
