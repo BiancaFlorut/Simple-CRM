@@ -45,9 +45,13 @@ export class UserDetailComponent {
   }
 
   openAddressDialog() {
-    this.dialog.open(DialogEditAddressComponent);
+    this.dialog.open(DialogEditAddressComponent, {
+      data: this.user
+    });
   }
   openContactInfoDialog() {
-    this.dialog.open(DialogEditContactInfoComponent)
+    this.dialog.open(DialogEditContactInfoComponent, {
+      data: this.user
+    })
     }
 }
