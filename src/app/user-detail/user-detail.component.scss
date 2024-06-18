@@ -1,0 +1,28 @@
+.user-header-card {
+  min-height: 250px;
+  background-color: #ced1dd;
+  color: rgb(104, 104, 104);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-bottom: 32px;
+  box-sizing: border-box;
+}
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 16px;
+  h2 {
+    margin: 0;
+  }
+}
